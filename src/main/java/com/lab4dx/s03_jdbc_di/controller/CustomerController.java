@@ -30,12 +30,16 @@ public class CustomerController {
         Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("select * from customer");
-        List<Customer> customers = new ArrayList<>();
+        List<Customer> customers= new ArrayList<>();
         while (rs.next()) {
             Customer customer = new Customer();
-            customers.setCustomerId(rs.getInt("customer_id"));
-            customers.setCustomerName(rs.getString);
+            customer.setCustomerId(rs.getInt("customer_id"));
+            customer.setCustomerName(rs.getString("customer_name"));
+            customer.setCustomerEmail(rs.getString("customer_email"));
+            customer.setCustomerPhone(rs.getString("customer_phone"));
+            customers.add(customer);
+        }
+        model.addAttribute("customers", customers);
 
         }
     }
-}
